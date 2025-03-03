@@ -1,87 +1,32 @@
-
-
+from stats import count_strings,count_chars
+import sys
 
 
 def main():
    #print("ost")
-    with open("books/Frankenstein.txt") as f:
+
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    with open(str(sys.argv[1])) as f:
+        
+        
+
         file_contents = f.read()
         #print(file_contents)
+        print("Analyzing book found at books/frankenstein.txt...")
+        print("============ BOOKBOT ============")
 
         print("--- Begin report of books/frankenstein.txt ---")
-
-        print(count_strings(file_contents))
-        print("\n")
-
+        #print(count_strings(file_contents))
+        print("----------- Word Count ----------")
+        count_strings(file_contents)
+        
+        #print("\n")
+        print("--------- Character Count -------")
         count_chars(file_contents)
-
-        print("--- End report ---")
-
-def count_strings(s):
-    words = s.split()
-
-    return f"{len(words)} words were found in the document" 
-
-
-
-    
-
-
-
-
-def count_chars(s):
-
-    my_dict = {}
-
-    clean_string = s.lower()
-
-    sorted_list = []
-
-    for char in clean_string:
-
-        if char.isalpha():
-            sorted_list.append(char)
-
-    
-    sorted_list.sort()
-
-   # print(sorted_list)
-
-
-    new_dict={}
-    #print(clean_string)
-
-    for char in sorted_list:
-        
-       
-
-        if char not in my_dict:
-            my_dict[char] = 1
-        
-        else:
-            my_dict[char] += 1
-
-    
-         
-    for key,value in my_dict.items():
-
-        #print(value)
-
-        print(f"'{key}' character was found {value} times")
-
-        
-
-
-
-    
-
-    
-       
-
-        
-
-
-
+        print("============= END ===============")
 
 
 main()
